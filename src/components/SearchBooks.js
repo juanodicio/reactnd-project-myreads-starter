@@ -2,8 +2,24 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import BookshelfGrid from './BookshelfGrid'
 
+const BooksAPI = require('../BooksAPI');
 
 class SearchBooks extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      results: []
+    }
+  }
+
+  onSearch = (e) => {
+    const term = e.target.value;
+    BooksAPI.search(term)
+      .then((data) => {
+        this.setState({results: data});
+      });
+  }
 
   render() {
     return (
@@ -20,12 +36,13 @@ class SearchBooks extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-            <input type="text" placeholder="Search by title or author"/>
+            <input type="text" onChange={ this.onSearch }
+                   placeholder="Search by title or author"/>
 
           </div>
         </div>
         <div className="search-books-results">
-          <BookshelfGrid />
+          <BookshelfGrid books={ this.state.results } />
         </div>
       </div>
     );
