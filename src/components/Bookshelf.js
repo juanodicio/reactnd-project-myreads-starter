@@ -1,5 +1,5 @@
 import React from 'react';
-import BookshelfItem from './BookshelfItem';
+import BookshelfGrid from './BookshelfGrid';
 
 class Bookshelf extends React.Component {
   render(){
@@ -7,11 +7,7 @@ class Bookshelf extends React.Component {
       <div className="bookshelf">
         <h2 className="bookshelf-title">Currently Reading</h2>
         <div className="bookshelf-books">
-          <ol className="books-grid">
-            <BookshelfItem />
-            <BookshelfItem />
-            <BookshelfItem />
-          </ol>
+          <BookshelfGrid />
         </div>
       </div>
     );
