@@ -1,6 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class BookshelfItem extends React.Component {
+
+  static propTypes = {
+    book: PropTypes.object
+  }
+
   render() {
     const book = this.props.book;
     return (
@@ -25,6 +31,5 @@ class BookshelfItem extends React.Component {
     );
   }
 }
-
 
 export default BookshelfItem;

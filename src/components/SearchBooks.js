@@ -15,9 +15,19 @@ class SearchBooks extends Component {
 
   onSearch = (e) => {
     const term = e.target.value;
+    if (term === "") {
+      this.setState({results: []});
+      return;
+    }
     BooksAPI.search(term)
       .then((data) => {
-        this.setState({results: data});
+        if (data.error) {
+          this.setState({results: []});
+        } else {
+          let books = data || [];
+          this.setState({results: books});
+        }
+
       });
   }
 

@@ -4,6 +4,28 @@ import { Link } from 'react-router-dom';
 import Bookshelf from './Bookshelf';
 
 class ListBooks extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bookshelves: [
+        {
+          key: "currentlyReading",
+          title: "Currently Reading",
+          books: []
+        },
+        {
+          key: "wantToRead",
+          title: "Want to Read",
+          books: []
+        },
+        {
+          key: "read",
+          title: "Read",
+          books: []
+        },
+      ]
+    }
+  }
 
   render() {
     return (
@@ -13,9 +35,9 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <Bookshelf title="Currently Reading"/>
-            <Bookshelf title="Want to Read"/>
-            <Bookshelf title="Read"/>
+            {this.state.bookshelves.map(bs => (
+              <Bookshelf key={bs.key} title={bs.title} books={bs.books} />
+            ))}
           </div>
         </div>
         <div className="open-search">
