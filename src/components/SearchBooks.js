@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import BookshelfGrid from './BookshelfGrid'
+import PropTypes from 'prop-types'
 
 const BooksAPI = require('../BooksAPI');
 
 class SearchBooks extends Component {
+  static propTypes = {
+    moveBook: PropTypes.func.isRequired
+  }
 
   constructor(props) {
     super(props);
@@ -52,7 +56,7 @@ class SearchBooks extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <BookshelfGrid books={ this.state.results } />
+          <BookshelfGrid books={ this.state.results } moveBook={ this.props.moveBook } />
         </div>
       </div>
     );

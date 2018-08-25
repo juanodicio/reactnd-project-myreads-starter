@@ -2,29 +2,12 @@ import { Component } from 'react';
 import React from "react";
 import { Link } from 'react-router-dom';
 import Bookshelf from './Bookshelf';
+import PropTypes from 'prop-types';
 
 class ListBooks extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      bookshelves: [
-        {
-          key: "currentlyReading",
-          title: "Currently Reading",
-          books: []
-        },
-        {
-          key: "wantToRead",
-          title: "Want to Read",
-          books: []
-        },
-        {
-          key: "read",
-          title: "Read",
-          books: []
-        },
-      ]
-    }
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    moveBook: PropTypes.func.isRequired
   }
 
   render() {
@@ -35,9 +18,21 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            {this.state.bookshelves.map(bs => (
-              <Bookshelf key={bs.key} title={bs.title} books={bs.books} />
-            ))}
+            <Bookshelf
+              shelfKey="currentlyReading"
+              title="Currently Reading"
+              moveBook={ this.props.moveBook }
+              books={this.props.books} />
+            <Bookshelf
+              shelfKey="wantToRead"
+              title="Want to Read"
+              moveBook={ this.props.moveBook }
+              books={this.props.books} />
+            <Bookshelf
+              shelfKey="read"
+              title="Read"
+              moveBook={ this.props.moveBook }
+              books={this.props.books} />
           </div>
         </div>
         <div className="open-search">
