@@ -18,7 +18,6 @@ class BooksApp extends React.Component {
 
   _reloadBooks(){
     BooksAPI.getAll().then(books => {
-      console.log(books);
       this.setState({books: books});
     });
   }
@@ -29,7 +28,6 @@ class BooksApp extends React.Component {
 
   moveBook = (book, shelf) => {
     BooksAPI.update(book, shelf).then((data) => {
-      console.log(data);
       this._reloadBooks();
     });
   };

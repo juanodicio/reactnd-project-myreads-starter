@@ -14,20 +14,19 @@ class BookshelfItem extends React.Component {
   }
 
   onChangeShelf(book, shelf) {
-    console.log(book, shelf);
-    console.log(this.props);
     this.props.moveBook(book, shelf);
   }
 
   render() {
     const book = this.props.book;
+    const shelf = this.props.book.shelf || 'none';
     return (
       <li>
         <div className="book">
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url(' + book.imageLinks.smallThumbnail + ')' }}></div>
             <div className="book-shelf-changer">
-              <select value={book.shelf} defaultValue="none"
+              <select value={shelf}
                   onChange={ (e) => { this.onChangeShelf(book, e.target.value) } }>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
