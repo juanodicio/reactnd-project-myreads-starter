@@ -28,7 +28,10 @@ class SearchBooks extends Component {
         if (data.error) {
           this.setState({results: []});
         } else {
-          let books = data || [];
+          let books = (data || []).map((book) => {
+            book.shelf = this.props.getDefaultShelf(book);
+            return book;
+          });
           this.setState({results: books});
         }
 
@@ -58,7 +61,6 @@ class SearchBooks extends Component {
         <div className="search-books-results">
           <BookshelfGrid
             books={ this.state.results }
-            getDefaultShelf={ this.props.getDefaultShelf }
             moveBook={ this.props.moveBook } />
         </div>
       </div>

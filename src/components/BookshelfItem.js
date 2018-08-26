@@ -11,23 +11,27 @@ class BookshelfItem extends React.Component {
   constructor(props) {
     super(props);
     this.onChangeShelf = this.onChangeShelf.bind(this);
+    this.state = {
+      currentShelf: props.book.shelf
+    }
   }
 
   onChangeShelf(book, shelf) {
+    this.setState({currentShelf: shelf});
     this.props.moveBook(book, shelf);
   }
 
   render() {
     const book = this.props.book;
-    const shelf = this.props.defaultShelf || 'none';
     const thumb = book.imageLinks && book.imageLinks.smallThumbnail;
+    console.log(book.authors);
     return (
       <li>
         <div className="book">
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url(' + thumb + ')' }}></div>
             <div className="book-shelf-changer">
-              <select value={shelf}
+              <select value={this.state.currentShelf}
                   onChange={ (e) => { this.onChangeShelf(book, e.target.value) } }>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
