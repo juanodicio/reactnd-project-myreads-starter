@@ -14,6 +14,7 @@ class BooksApp extends React.Component {
   constructor(props) {
     super(props);
     this.moveBook = this.moveBook.bind(this);
+    this.getDefaultShelf = this.getDefaultShelf.bind(this);
   }
 
   _reloadBooks(){
@@ -32,14 +33,35 @@ class BooksApp extends React.Component {
     });
   };
 
+  getDefaultShelf = (book) => {
+    if (book.shelf) {
+      return book.shelf;
+    }
+
+    let found = this.state.books.find((b) => b.id === book.id);
+    if (found) {
+      return found.shelf;
+    }
+
+    return 'none';
+  }
+
   render() {
     return (
       <div className="app">
         <Route path="/search" render={(history) => (
-          <SearchBooks moveBook={ this.moveBook } />
-          )} />
+          <SearchBooks
+            moveBook={ this.moveBook }
+            getDefaultShelf={ this.getDefaultShelf } />
+          )}
+        />
         <Route exact path="/" render={(history) => (
-          <ListBooks moveBook={ this.moveBook } books={ this.state.books } />)} />
+          <ListBooks
+            moveBook={ this.moveBook }
+            books={ this.state.books }
+            getDefaultShelf={ this.getDefaultShelf }
+          />)}
+        />
       </div>
     )
   }

@@ -16,6 +16,7 @@ class Bookshelf extends React.Component {
         <div className="bookshelf-books">
           <BookshelfGrid
             moveBook={ this.props.moveBook }
+            getDefaultShelf={ this.props.getDefaultShelf }
             books={this.props.books.filter(b => (b.shelf === this.props.shelfKey))} />
         </div>
       </div>

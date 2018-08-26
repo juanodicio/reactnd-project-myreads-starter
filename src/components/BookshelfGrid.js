@@ -10,13 +10,17 @@ class BookshelfGrid extends React.Component {
   }
 
   render() {
+    const defaultShelfFunc = this.props.getDefaultShelf || ((book) => "none");
     return (
       <ol className="books-grid">
-        {this.props.books && this.props.books.map && (this.props.books.map((book, i) => (
-          <BookshelfItem
-            moveBook={ this.props.moveBook }
-            book={book} key={i} />
-        )))}
+        {this.props.books && this.props.books.map && (this.props.books.map((book, i) => {
+          return (
+            <BookshelfItem
+              moveBook={ this.props.moveBook }
+              defaultShelf={ defaultShelfFunc(book) }
+              book={book} key={i} />
+          );
+        }))}
       </ol>
     );
   }

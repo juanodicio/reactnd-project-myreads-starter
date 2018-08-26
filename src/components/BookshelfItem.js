@@ -19,7 +19,7 @@ class BookshelfItem extends React.Component {
 
   render() {
     const book = this.props.book;
-    const shelf = this.props.book.shelf || 'none';
+    const shelf = this.props.defaultShelf || 'none';
     const thumb = book.imageLinks && book.imageLinks.smallThumbnail;
     return (
       <li>

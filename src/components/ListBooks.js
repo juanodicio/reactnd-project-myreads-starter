@@ -22,16 +22,19 @@ class ListBooks extends Component {
               shelfKey="currentlyReading"
               title="Currently Reading"
               moveBook={ this.props.moveBook }
+              getDefaultShelf={ this.props.getDefaultShelf }
               books={this.props.books} />
             <Bookshelf
               shelfKey="wantToRead"
               title="Want to Read"
               moveBook={ this.props.moveBook }
+              getDefaultShelf={ this.props.getDefaultShelf }
               books={this.props.books} />
             <Bookshelf
               shelfKey="read"
               title="Read"
               moveBook={ this.props.moveBook }
+              getDefaultShelf={ this.props.getDefaultShelf }
               books={this.props.books} />
           </div>
         </div>
