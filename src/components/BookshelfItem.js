@@ -24,12 +24,11 @@ class BookshelfItem extends React.Component {
   render() {
     const book = this.props.book;
     const thumb = book.imageLinks && book.imageLinks.smallThumbnail;
-    console.log(book.authors);
     return (
       <li>
         <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url(' + thumb + ')' }}></div>
+            <div className="book-cover" style={{width: 128, height: 193, backgroundImage: 'url(' + thumb + ')'}} />
             <div className="book-shelf-changer">
               <select value={this.state.currentShelf}
                   onChange={ (e) => { this.onChangeShelf(book, e.target.value) } }>
@@ -42,7 +41,7 @@ class BookshelfItem extends React.Component {
             </div>
           </div>
           <div className="book-title">{ book.title }</div>
-          <div className="book-authors">{ book.authors }</div>
+          <div className="book-authors">{ book.authors && book.authors.join(', ') }</div>
         </div>
       </li>
     );
