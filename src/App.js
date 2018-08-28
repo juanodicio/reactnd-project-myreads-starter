@@ -17,20 +17,17 @@ class BooksApp extends React.Component {
     this.getDefaultShelf = this.getDefaultShelf.bind(this);
   }
 
-  _reloadBooks(){
-    BooksAPI.getAll().then(books => {
-      this.setState({books: books});
-    });
-  }
-
-  componentDidMount() {
-    this._reloadBooks();
+  async componentDidMount() {
+    const books = await BooksAPI.getAll();
+    this.setState({books});
   }
 
   moveBook = (book, shelf) => {
-    BooksAPI.update(book, shelf).then((data) => {
-      this._reloadBooks();
-    });
+    BooksAPI.update(book, shelf);
+    book.shelf = shelf;
+    this.setState((currState) => ({
+      books: currState.books.filter((b) => (b.id !== book.id)).concat(book)
+    }));
   };
 
   getDefaultShelf = (book) => {
