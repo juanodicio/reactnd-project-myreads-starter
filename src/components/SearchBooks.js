@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import BookshelfGrid from './BookshelfGrid'
 import PropTypes from 'prop-types'
+import debounce from 'lodash/debounce';
 
 const BooksAPI = require('../BooksAPI');
 
@@ -17,8 +18,8 @@ class SearchBooks extends Component {
     }
   }
 
-  onSearch = (e) => {
-    const term = e.target.value;
+  search = debounce((term) => {
+    console.log("Search:", term);
     if (term === "") {
       this.setState({results: []});
       return;
@@ -36,7 +37,13 @@ class SearchBooks extends Component {
         }
 
       });
-  }
+  }, 500);
+
+  onSearch = (e) => {
+    console.log("onSearch");
+    const term = e.target.value;
+    this.search(term);
+  };
 
   render() {
     return (
@@ -53,7 +60,7 @@ class SearchBooks extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-            <input type="text" onChange={ this.onSearch }
+            <input type="text" onKeyUp={ this.onSearch }
                    placeholder="Search by title or author"/>
 
           </div>
