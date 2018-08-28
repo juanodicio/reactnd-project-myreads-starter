@@ -16,7 +16,6 @@ class SearchBooks extends Component {
   }
 
   search = debounce((term) => {
-    console.log("Search:", term);
     if (term === "") {
       this.setState({results: []});
       return;
@@ -37,7 +36,6 @@ class SearchBooks extends Component {
   }, 500);
 
   onSearch = (e) => {
-    console.log("onSearch");
     const term = e.target.value;
     this.search(term);
   };
