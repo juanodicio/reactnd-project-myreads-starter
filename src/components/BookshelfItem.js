@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class BookshelfItem extends React.Component {
+class BookshelfItem extends React.PureComponent {
 
   static propTypes = {
     book: PropTypes.object.isRequired,
