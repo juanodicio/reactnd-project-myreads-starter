@@ -8,15 +8,11 @@ class BookshelfItem extends React.PureComponent {
     moveBook: PropTypes.func
   }
 
-  constructor(props) {
-    super(props);
-    this.onChangeShelf = this.onChangeShelf.bind(this);
-    this.state = {
-      currentShelf: props.book.shelf
-    }
+  state = {
+    currentShelf: this.props.book.shelf
   }
 
-  onChangeShelf(book, shelf) {
+  onChangeShelf = (book, shelf) => {
     this.setState({currentShelf: shelf});
     this.props.moveBook(book, shelf);
   }
