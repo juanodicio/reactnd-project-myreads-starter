@@ -1,6 +1,15 @@
 # MyReads Project (Juan Odicio)
 
-To set up and run the application:
+MyReads is a small application for keeping track of 
+the books you are planning to read, currently reading and read. 
+ 
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
+### Installation
+
+Install the dependencies and start the server.
+
+```sh
+$ npm install
+$ npm start
+```
+
